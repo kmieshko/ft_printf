@@ -25,7 +25,7 @@ static void	ft_compress(t_struc *struc, t_res *res)
 		res = ft_hash_ox(struc, res);
 	else if (struc->str && struc->type == 'p')
 	{
-		if (struc->prec == 0 && struc->dot == 1)
+		if (struc->prec == 0 && struc->dot == 1 && struc->str[0] == '0')
 		{
 			ft_strdel(&struc->str);
 			struc->str = ft_strdup("\0");

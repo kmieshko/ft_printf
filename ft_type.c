@@ -72,7 +72,7 @@ void	ft_check_type(char type, va_list arg_ptr, t_struc *struc)
 	if (ft_is_needle("dDioOuUxX", type) == 1)
 	{
 		ft_digit_type(type, arg_ptr, struc);
-		if (struc->dot && struc->prec == 0 && struc->str[0] == '0')
+		if (struc->dot && struc->prec == 0 && ft_strcmp(struc->str, "0") == 0)
 			struc->str[0] = '\0';
 	}
 	else if (type == 'p')

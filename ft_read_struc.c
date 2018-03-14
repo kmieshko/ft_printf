@@ -14,7 +14,8 @@
 
 static int	ft_first_norm(t_struc *struc, int len)
 {
-	if (ft_is_needle("dDiuUoOxX", struc->type) == 1 && len < struc->prec)
+	if (ft_is_needle("pdDiuUoOxX", struc->type) && struc->dot
+		&& len < struc->prec)
 		len = struc->prec;
 	if (struc->flag[2] == ' ' && ft_is_needle("sc", struc->type) == 0)
 		len++;
@@ -24,7 +25,7 @@ static int	ft_first_norm(t_struc *struc, int len)
 	if ((struc->flag[0] == '#') && (struc->type == 'o' || struc->type == 'O'))
 		len++;
 	if (struc->type == 'p' || (ft_is_needle("xX", struc->type) &&
-		struc->flag[0] == '#'))
+		struc->flag[0] == '#' && struc->str[0] != '\0' && struc->str[0] != '0'))
 		len = len + 2;
 	return (len);
 }
@@ -51,15 +52,18 @@ char		*ft_fill_space_from_width(t_struc *struc, int len)
 
 static void	ft_second_norm(t_struc *struc)
 {
-	if ((ft_is_needle("dDiuUoOxX", struc->type) && struc->dot == 1)
+	if ((ft_is_needle("pdDiuUoOxX", struc->type) && struc->dot == 1)
 		&& struc->flag[1] == '0')
 		struc->flag[1] = '\0';
 	if (struc->prec > 0 && ft_is_needle("sc", struc->type) == 1 &&
 		struc->prec < struc->len)
 		struc->len = struc->prec;
-	if (struc->prec > 0 && (struc->type == 'C' || struc->type == 'S'))
+	if (struc->prec > 0 && ft_is_needle("SC", struc->type))
 		struc->len = ft_count_len_prec(struc);
-	if (!struc->prec && struc->dot && ft_is_needle("sScCoOuUxX", struc->type))
+	if (!struc->prec && struc->dot && ft_is_needle("sScC", struc->type))
+		struc->len = 0;
+	if (struc->str && ((!struc->prec && struc->dot && struc->str[0] == '0') ||
+		struc->str[0] == '\0') && ft_is_needle("pxXoOuU", struc->type))
 		struc->len = 0;
 	if ((struc->type == 'c' && struc->str[0] == 0) ||
 		(struc->type == 'C' && struc->w_str[0] == 0))
@@ -73,7 +77,12 @@ void		ft_read_struc(t_struc *struc)
 	else if (struc->str)
 		struc->len = ft_strlen(struc->str);
 	else if (struc->w_str)
-		struc->len = ft_count_bytes_of_unicode(struc->w_str);
+	{
+		if (struc->type == 'C')
+			struc->len = ft_size_of_unicode(struc->w_str[0]);
+		else
+			struc->len = ft_count_bytes_of_unicode(struc->w_str);
+	}
 	ft_second_norm(struc);
 	if (struc->len < struc->width)
 		struc->before_str = ft_fill_space_from_width(struc, struc->len);

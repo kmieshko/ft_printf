@@ -107,15 +107,14 @@ t_res	*ft_hash_ox(t_struc *struc, t_res *res)
 	}
 	else if ((struc->type == 'x' || struc->type == 'X'))
 	{
-		if (struc->str[0] != '0' && (struc->dot == 0 || struc->prec > 1) &&
-			struc->flag[0] == '#')
+		if (struc->flag[0] == '#')
 		{
-			res->arr = ft_join(res->arr, "0");
-			if (struc->type == 'x')
-				res->arr = ft_join(res->arr, "x");
-			else
-				res->arr = ft_join(res->arr, "X");
-			res->count += 2;
+			if (struc->str[0] != '\0' && struc->str[0] != '0')
+			{
+				res->arr = struc->type == 'x' ? ft_join(res->arr, "0x") :
+				ft_join(res->arr, "0X");
+				res->count += 2;
+			}
 		}
 	}
 	return (res);
