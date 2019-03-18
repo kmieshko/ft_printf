@@ -3,7 +3,7 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: dfedorov <dfedorov@student.unit.ua>        +#+  +:+       +#+         #
+#    By: kmieshko <kmieshko@student.unit.ua>        +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2017/10/31 17:29:00 by dfedorov          #+#    #+#              #
 #    Updated: 2018/02/25 17:09:30 by dfedorov         ###   ########.fr        #
