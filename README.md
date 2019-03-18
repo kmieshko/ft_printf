@@ -1,6 +1,6 @@
 # ft_printf
 
-ft_printf is a project aims at rebuilding the printf library with basic functionality.
+*ft_printf* is a project aims at rebuilding the printf library with basic functionality.
 
 **Basics**, requested from subject:
 
