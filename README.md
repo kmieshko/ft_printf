@@ -18,3 +18,10 @@
 # Usage
 
 Edit the Makefile to point to libft. Run make to compile the library. Use it like you would use the printf function
+
+# Disclaimer
+
+This project is written according to 42's "The Norm" which specifies special rules for code like less then 25 lines in each function, 85 symbols in line, forbidden most of libraries and functions that wasn't written by you, also "for", "switch case", "goto" are forbidden etc... 
+
+You can read more at (https://ncoden.fr/datas/42/norm.pdf)
+So to achieve some conditions sometimes code is modified to the point where it bacomes not really readble
